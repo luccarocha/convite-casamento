@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Heart, Calendar, Copy, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Heart, Calendar, Copy, Volume2, VolumeX, Map } from 'lucide-react';
 
 const StoryBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -86,16 +86,16 @@ const StoryBook = () => {
           <div className="flex items-center justify-center gap-2">
             <Calendar style={{color: '#C9184A'}} className="w-6 h-6" />
             <p style={{color: '#800F2F'}} className="text-xl sm:text-2xl font-medium">
-              20 de Junho de 2025
+              27 de Dezembro de 2025
             </p>
           </div>
 
           {/* Cerimônia */}
           <div style={{backgroundColor: '#FFB3C1'}} 
-               className="p-4 rounded-lg space-y-2 transition-all hover:shadow-md">
+               className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
             <h3 style={{color: '#800F2F'}} className="text-xl font-medium">Cerimônia</h3>
-            <div className="space-y-1">
-              <p style={{color: '#800F2F'}} className="text-lg">16:00 horas</p>
+            <div className="space-y-2">
+              <p style={{color: '#800F2F'}} className="text-lg">17:00 horas</p>
               <p style={{color: '#800F2F'}} className="text-lg font-medium">
                 Igreja Nossa Senhora das Graças
               </p>
@@ -104,13 +104,41 @@ const StoryBook = () => {
               </p>
               <p style={{color: '#800F2F'}} className="text-lg">São Paulo - SP</p>
             </div>
+            <div className="flex flex-col sm:flex-row gap-2 pt-4">
+              <button
+                onClick={() => {
+                  window.open('https://www.google.com/maps?q=Igreja+Nossa+Senhora+das+Graças');
+                }}
+                style={{backgroundColor: '#C9184A'}}
+                className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+              >
+                <Map className="w-4 h-4" />
+                Ver no Maps
+              </button>
+              <button
+                onClick={() => {
+                  const event = {
+                    text: "Cerimônia de Casamento",
+                    dates: "20251227T170000",
+                    location: "Igreja Nossa Senhora das Graças"
+                  };
+                  const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
+                  window.open(googleCalendarUrl);
+                }}
+                style={{backgroundColor: '#FF4D6D'}}
+                className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+              >
+                <Calendar className="w-4 h-4" />
+                Save the Date
+              </button>
+            </div>
           </div>
 
           {/* Festa */}
           <div style={{backgroundColor: '#FFB3C1'}} 
-               className="p-4 rounded-lg space-y-2 transition-all hover:shadow-md">
+               className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
             <h3 style={{color: '#800F2F'}} className="text-xl font-medium">Festa</h3>
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p style={{color: '#800F2F'}} className="text-lg">20:00 horas</p>
               <p style={{color: '#800F2F'}} className="text-lg font-medium">
                 Espaço Villa Real
@@ -122,6 +150,34 @@ const StoryBook = () => {
               <p style={{color: '#800F2F'}} className="text-sm mt-2">
                 (180 km de São Paulo - aproximadamente 2h30 de viagem)
               </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 pt-4">
+              <button
+                onClick={() => {
+                  window.open('https://www.google.com/maps?q=Espaço+Villa+Real+Campos+do+Jordão');
+                }}
+                style={{backgroundColor: '#C9184A'}}
+                className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+              >
+                <Map className="w-4 h-4" />
+                Ver no Maps
+              </button>
+              <button
+                onClick={() => {
+                  const event = {
+                    text: "Festa de Casamento",
+                    dates: "20251227T200000",
+                    location: "Espaço Villa Real - Campos do Jordão"
+                  };
+                  const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
+                  window.open(googleCalendarUrl);
+                }}
+                style={{backgroundColor: '#FF4D6D'}}
+                className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+              >
+                <Calendar className="w-4 h-4" />
+                Save the Date
+              </button>
             </div>
           </div>
 
@@ -139,7 +195,7 @@ const StoryBook = () => {
 
         <div className="space-y-4">
           <p style={{color: '#800F2F'}} className="text-lg">
-            Por favor, confirme sua presença até 20 de Maio de 2025
+            Por favor, confirme sua presença até 27 de Novembro de 2025
           </p>
           <button 
             style={{backgroundColor: '#C9184A'}}
@@ -258,7 +314,7 @@ const StoryBook = () => {
                 className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
                   currentPage === 0 ? 'ml-auto' : ''
                 }`}
-              >
+              >[Continuação do código anterior...]
                 <ChevronRight className="w-5 h-5" />
               </button>
             )}
