@@ -1,6 +1,78 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Heart, Calendar, Copy, Volume2, VolumeX, Map } from 'lucide-react';
 
+// Componente Carrossel
+const Carousel = ({ items }) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % items.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [items.length]);
+
+  return (
+    <div className="relative w-full h-64">
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className={`absolute w-full h-full transition-opacity duration-500 ${
+            index === current ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={item}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-full object-cover rounded-lg shadow-md"
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Componente Grid de Mídia
+const MediaGrid = ({ items }) => {
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      {items.map((item, index) => (
+        <div key={index} className="aspect-square">
+          {item.type === 'video' ? (
+            <video
+              src={item.url}
+              className="w-full h-full object-cover rounded-lg"
+              controls
+              muted
+              loop
+            />
+          ) : (
+            <img
+              src={item.url}
+              alt={`Imagem ${index + 1}`}
+              className="w-full h-full object-cover rounded-lg"
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Componente Vídeo
+const VideoPlayer = ({ url }) => {
+  return (
+    <video
+      src={url}
+      className="w-full h-64 object-cover rounded-lg shadow-md"
+      controls
+      muted
+      loop
+    />
+  );
+};
+
 const StoryBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
@@ -13,22 +85,47 @@ const StoryBook = () => {
     {
       title: "O Primeiro Encontro",
       text: "Era uma noite especial de junho quando seus caminhos se cruzaram pela primeira vez...",
-      imageUrl: "/api/placeholder/400/300"
+      media: {
+        type: "video",
+        url: "/public/arquivos/1.mp4"
+      }
     },
     {
       title: "O Pedido de Namoro",
       text: "Sob as estrelas, com o coração acelerado, ele preparou uma surpresa inesquecível...",
-      imageUrl: "/api/placeholder/400/300"
+      media: {
+        type: "carousel",
+        items: [
+          "/public/arquivos/2.mp4",
+          "/public/arquivos/3.mp4"
+        ]
+      }
     },
     {
-      title: "A Primeira Viagem",
+      title: "Nossa Jornada",
       text: "Juntos, descobrindo novos horizontes e construindo memórias para toda vida...",
-      imageUrl: "/api/placeholder/400/300"
+      media: {
+        type: "grid",
+        items: [
+          { type: "video", url: "/public/arquivos/4.mp4" },
+          { type: "video", url: "/public/arquivos/5.mp4"},
+          { type: "video", url: "/public/arquivos/6.mp4"},
+          { type: "video", url: "/public/arquivos/7.mp4"},
+          { type: "video", url: "/public/arquivos/8.mp4"},
+          { type: "video", url: "/public/arquivos/9.mp4" },
+          { type: "video", url: "/public/arquivos/10.mp4"},
+          { type: "video", url: "/public/arquivos/11.mp4"},
+          { type: "video", url: "/public/arquivos/12.mp4"}
+        ]
+      }
     },
     {
       title: "O Pedido de Casamento",
       text: "No momento perfeito, as palavras certas fizeram o coração transbordar de alegria...",
-      imageUrl: "/api/placeholder/400/300"
+      media: {
+        type: "video",
+        url: "/public/arquivos/13.mp4"
+      }
     },
     {
       type: "invitation",
