@@ -1,9 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Heart, Calendar, Copy, Volume2, VolumeX, Map } from 'lucide-react';
 
-// Componente Carrossel com vídeos
+// Componente VideoPlayer atualizado
+const VideoPlayer = ({ url }) => {
+  const videoRef = useRef(null);
+
+  return (
+    <div className="w-full">
+      <video
+        ref={videoRef}
+        className="w-full rounded-lg shadow-md"
+        controls
+        muted
+        autoPlay={false}
+        playsInline
+        preload="metadata"
+      >
+        <source src={url} type="video/mp4" />
+        Seu navegador não suporta o elemento de vídeo.
+      </video>
+    </div>
+  );
+};
+
+// Carousel atualizado
 const Carousel = ({ items }) => {
   const [current, setCurrent] = useState(0);
+  const videoRefs = useRef(items.map(() => React.createRef()));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -14,65 +37,50 @@ const Carousel = ({ items }) => {
   }, [items.length]);
 
   return (
-    <div className="relative w-full h-64">
+    <div className="relative w-full">
       {items.map((item, index) => (
         <div
           key={index}
-          className={`absolute w-full h-full transition-opacity duration-500 ${
-            index === current ? 'opacity-100' : 'opacity-0'
+          className={`${
+            index === current ? 'block' : 'hidden'
           }`}
         >
           <video
-            src={item.url}
-            className="w-full h-full object-cover rounded-lg"
+            ref={videoRefs.current[index]}
+            className="w-full rounded-lg shadow-md"
             controls
-            autoPlay
             muted
-            loop
-            preload="metadata"
             playsInline
-          />
+            preload="metadata"
+          >
+            <source src={item.url} type="video/mp4" />
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
         </div>
       ))}
     </div>
   );
 };
 
-// Grid de vídeos
+// MediaGrid atualizado
 const MediaGrid = ({ items }) => {
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
       {items.map((item, index) => (
         <div key={index} className="aspect-video">
           <video
-            src={item.url}
             className="w-full h-full object-cover rounded-lg"
             controls
             muted
-            loop
-            preload="metadata"
             playsInline
-          />
+            preload="metadata"
+          >
+            <source src={item.url} type="video/mp4" />
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
         </div>
       ))}
     </div>
-  );
-};
-
-// Player de vídeo único
-const VideoPlayer = ({ url }) => {
-  return (
-    <video
-      src={url}
-      className="w-full rounded-lg shadow-md"
-      controls
-      autoPlay
-      muted
-      loop
-      preload="metadata"
-      playsInline
-      style={{ maxHeight: "400px" }}
-    />
   );
 };
 
@@ -87,7 +95,7 @@ const StoryBook = () => {
   const pages = [
     {
       title: "O Primeiro Encontro",
-      text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encotro, que marcou as nossas vidas... ",
+      text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encontro, que marcou as nossas vidas...",
       media: {
         type: "video",
         url: "/arquivos/1.mp4"
@@ -138,8 +146,15 @@ const StoryBook = () => {
 
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.volume = 0.5; // 50% do volume
       if (isPlaying) {
-        audioRef.current.play().catch(() => setIsPlaying(false));
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            setIsPlaying(false);
+            console.log('Reprodução automática bloqueada pelo navegador');
+          });
+        }
       } else {
         audioRef.current.pause();
       }
@@ -349,73 +364,73 @@ const StoryBook = () => {
         <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 relative">
           {currentPage === 0 && (
             <div className="text-center mb-8">
-            <h1 style={{color: '#192A51'}} className="text-3xl sm:text-4xl font-serif mb-4">
-              Nossa História de Amor
-            </h1>
-            <p style={{color: '#967AA1'}} className="italic">
-              Um conto de amor verdadeiro
-            </p>
-          </div>
-        )}
+              <h1 style={{color: '#192A51'}} className="text-3xl sm:text-4xl font-serif mb-4">
+                Nossa História de Amor
+              </h1>
+              <p style={{color: '#967AA1'}} className="italic">
+                Um conto de amor verdadeiro
+              </p>
+            </div>
+          )}
 
-        {pages[currentPage].type === 'invitation' ? (
-          renderInvitationPage()
-        ) : (
-          <div className="mb-8 space-y-6">
-            <h2 style={{color: '#192A51'}} className="text-2xl sm:text-3xl font-serif text-center">
-              {pages[currentPage].title}
-            </h2>
-            
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="w-full md:w-1/2">
-                {pages[currentPage].media.type === "carousel" && (
-                  <Carousel items={pages[currentPage].media.items} />
-                )}
-                {pages[currentPage].media.type === "grid" && (
-                  <MediaGrid items={pages[currentPage].media.items} />
-                )}
-                {pages[currentPage].media.type === "video" && (
-                  <VideoPlayer url={pages[currentPage].media.url} />
-                )}
-              </div>
+          {pages[currentPage].type === 'invitation' ? (
+            renderInvitationPage()
+          ) : (
+            <div className="mb-8 space-y-6">
+              <h2 style={{color: '#192A51'}} className="text-2xl sm:text-3xl font-serif text-center">
+                {pages[currentPage].title}
+              </h2>
               
-              <div className="w-full md:w-1/2">
-                <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
-                  {pages[currentPage].text}
-                </p>
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="w-full md:w-1/2">
+                  {pages[currentPage].media.type === "carousel" && (
+                    <Carousel items={pages[currentPage].media.items} />
+                  )}
+                  {pages[currentPage].media.type === "grid" && (
+                    <MediaGrid items={pages[currentPage].media.items} />
+                  )}
+                  {pages[currentPage].media.type === "video" && (
+                    <VideoPlayer url={pages[currentPage].media.url} />
+                  )}
+                </div>
+                
+                <div className="w-full md:w-1/2">
+                  <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
+                    {pages[currentPage].text}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Navegação minimalista */}
-        <div className="flex justify-between items-center">
-          {currentPage > 0 && (
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              style={{backgroundColor: '#AAA1C8'}}
-              className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-          )}
-          
-          {currentPage < pages.length - 1 && (
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              style={{backgroundColor: '#AAA1C8'}}
-              className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
-                currentPage === 0 ? 'ml-auto' : ''
-              }`}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          )}
+          {/* Navegação minimalista */}
+          <div className="flex justify-between items-center">
+            {currentPage > 0 && (
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                style={{backgroundColor: '#AAA1C8'}}
+                className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+            
+            {currentPage < pages.length - 1 && (
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                style={{backgroundColor: '#AAA1C8'}}
+                className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
+                  currentPage === 0 ? 'ml-auto' : ''
+                }`}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default StoryBook;
