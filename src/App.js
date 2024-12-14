@@ -79,15 +79,15 @@ const StoryBook = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
 
-  const pixKey = "123.456.789-00";
+  const pixKey = "076.644.995-50";
 
   const pages = [
     {
       title: "O Primeiro Encontro",
-      text: "Era uma noite especial de junho quando seus caminhos se cruzaram pela primeira vez...",
+      text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encotro, que marcou as nossas vidas... ",
       media: {
         type: "video",
-        url: "/public/arquivos/1.mp4"
+        url: "/arquivos/1.mp4"
       }
     },
     {
@@ -96,8 +96,8 @@ const StoryBook = () => {
       media: {
         type: "carousel",
         items: [
-          "/public/arquivos/2.mp4",
-          "/public/arquivos/3.mp4"
+          { type: "video", url: "/arquivos/2.mp4" },
+          { type: "video", url: "/arquivos/3.mp4" }
         ]
       }
     },
@@ -107,15 +107,15 @@ const StoryBook = () => {
       media: {
         type: "grid",
         items: [
-          { type: "video", url: "/public/arquivos/4.mp4" },
-          { type: "video", url: "/public/arquivos/5.mp4"},
-          { type: "video", url: "/public/arquivos/6.mp4"},
-          { type: "video", url: "/public/arquivos/7.mp4"},
-          { type: "video", url: "/public/arquivos/8.mp4"},
-          { type: "video", url: "/public/arquivos/9.mp4" },
-          { type: "video", url: "/public/arquivos/10.mp4"},
-          { type: "video", url: "/public/arquivos/11.mp4"},
-          { type: "video", url: "/public/arquivos/12.mp4"}
+          { type: "video", url: "/arquivos/4.mp4" },
+          { type: "video", url: "/arquivos/5.mp4" },
+          { type: "video", url: "/arquivos/6.mp4" },
+          { type: "video", url: "/arquivos/7.mp4" },
+          { type: "video", url: "/arquivos/8.mp4" },
+          { type: "video", url: "/arquivos/9.mp4" },
+          { type: "video", url: "/arquivos/10.mp4" },
+          { type: "video", url: "/arquivos/11.mp4" },
+          { type: "video", url: "/arquivos/12.mp4" }
         ]
       }
     },
@@ -124,7 +124,7 @@ const StoryBook = () => {
       text: "No momento perfeito, as palavras certas fizeram o coração transbordar de alegria...",
       media: {
         type: "video",
-        url: "/public/arquivos/13.mp4"
+        url: "/arquivos/13.mp4"
       }
     },
     {
