@@ -57,7 +57,7 @@ const StoryBook = () => {
   const MusicControl = () => (
     <button
       onClick={toggleMusic}
-      style={{backgroundColor: '#C9184A'}}
+      style={{backgroundColor: '#967AA1'}}
       className="fixed bottom-4 right-4 p-3 rounded-full shadow-lg text-white hover:bg-opacity-90 transition-all z-50 backdrop-blur-sm"
     >
       {isPlaying ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
@@ -67,49 +67,49 @@ const StoryBook = () => {
   const renderInvitationPage = () => (
     <div className="text-center space-y-8 py-4 sm:py-8 px-4 sm:px-8">
       <div className="space-y-6">
-        <Heart style={{color: '#C9184A'}} className="w-12 h-12 mx-auto animate-pulse" />
-        <h2 style={{color: '#800F2F'}} className="text-3xl sm:text-5xl font-serif">
+        <Heart style={{color: '#967AA1'}} className="w-12 h-12 mx-auto animate-pulse" />
+        <h2 style={{color: '#192A51'}} className="text-3xl sm:text-5xl font-serif">
           Convite Especial
         </h2>
-        <p style={{color: '#C9184A'}} className="text-lg sm:text-xl font-light italic">
+        <p style={{color: '#967AA1'}} className="text-lg sm:text-xl font-light italic">
           Com muita alegria convidamos você para celebrar nosso amor...
         </p>
       </div>
 
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg space-y-8 p-4 sm:p-8">
-        <p className="text-lg sm:text-xl leading-relaxed" style={{color: '#800F2F'}}>
+        <p className="text-lg sm:text-xl leading-relaxed" style={{color: '#192A51'}}>
           Com imensa felicidade e amor, gostaríamos de convidá-lo(a) para celebrar 
           conosco o início desta nova e maravilhosa etapa de nossas vidas.
         </p>
 
         <div className="space-y-6">
           <div className="flex items-center justify-center gap-2">
-            <Calendar style={{color: '#C9184A'}} className="w-6 h-6" />
-            <p style={{color: '#800F2F'}} className="text-xl sm:text-2xl font-medium">
+            <Calendar style={{color: '#967AA1'}} className="w-6 h-6" />
+            <p style={{color: '#192A51'}} className="text-xl sm:text-2xl font-medium">
               27 de Dezembro de 2025
             </p>
           </div>
 
           {/* Cerimônia */}
-          <div style={{backgroundColor: '#FFB3C1'}} 
+          <div style={{backgroundColor: '#F5E6E8'}} 
                className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
-            <h3 style={{color: '#800F2F'}} className="text-xl font-medium">Cerimônia</h3>
+            <h3 style={{color: '#192A51'}} className="text-xl font-medium">Cerimônia</h3>
             <div className="space-y-2">
-              <p style={{color: '#800F2F'}} className="text-lg">17:00 horas</p>
-              <p style={{color: '#800F2F'}} className="text-lg font-medium">
+              <p style={{color: '#192A51'}} className="text-lg">17:00 horas</p>
+              <p style={{color: '#192A51'}} className="text-lg font-medium">
                 Igreja Nossa Senhora das Graças
               </p>
-              <p style={{color: '#800F2F'}} className="text-lg">
+              <p style={{color: '#192A51'}} className="text-lg">
                 Rua das Flores, 123 - Jardim Primavera
               </p>
-              <p style={{color: '#800F2F'}} className="text-lg">São Paulo - SP</p>
+              <p style={{color: '#192A51'}} className="text-lg">São Paulo - SP</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 pt-4">
               <button
                 onClick={() => {
                   window.open('https://www.google.com/maps?q=Igreja+Nossa+Senhora+das+Graças');
                 }}
-                style={{backgroundColor: '#C9184A'}}
+                style={{backgroundColor: '#967AA1'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
               >
                 <Map className="w-4 h-4" />
@@ -125,7 +125,7 @@ const StoryBook = () => {
                   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
                   window.open(googleCalendarUrl);
                 }}
-                style={{backgroundColor: '#FF4D6D'}}
+                style={{backgroundColor: '#AAA1C8'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
@@ -135,19 +135,19 @@ const StoryBook = () => {
           </div>
 
           {/* Festa */}
-          <div style={{backgroundColor: '#FFB3C1'}} 
+          <div style={{backgroundColor: '#F5E6E8'}} 
                className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
-            <h3 style={{color: '#800F2F'}} className="text-xl font-medium">Festa</h3>
+            <h3 style={{color: '#192A51'}} className="text-xl font-medium">Festa</h3>
             <div className="space-y-2">
-              <p style={{color: '#800F2F'}} className="text-lg">20:00 horas</p>
-              <p style={{color: '#800F2F'}} className="text-lg font-medium">
+              <p style={{color: '#192A51'}} className="text-lg">20:00 horas</p>
+              <p style={{color: '#192A51'}} className="text-lg font-medium">
                 Espaço Villa Real
               </p>
-              <p style={{color: '#800F2F'}} className="text-lg">
+              <p style={{color: '#192A51'}} className="text-lg">
                 Av. dos Sonhos, 789 - Centro
               </p>
-              <p style={{color: '#800F2F'}} className="text-lg">Campos do Jordão - SP</p>
-              <p style={{color: '#800F2F'}} className="text-sm mt-2">
+              <p style={{color: '#192A51'}} className="text-lg">Campos do Jordão - SP</p>
+              <p style={{color: '#192A51'}} className="text-sm mt-2">
                 (180 km de São Paulo - aproximadamente 2h30 de viagem)
               </p>
             </div>
@@ -156,7 +156,7 @@ const StoryBook = () => {
                 onClick={() => {
                   window.open('https://www.google.com/maps?q=Espaço+Villa+Real+Campos+do+Jordão');
                 }}
-                style={{backgroundColor: '#C9184A'}}
+                style={{backgroundColor: '#967AA1'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
               >
                 <Map className="w-4 h-4" />
@@ -172,7 +172,7 @@ const StoryBook = () => {
                   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
                   window.open(googleCalendarUrl);
                 }}
-                style={{backgroundColor: '#FF4D6D'}}
+                style={{backgroundColor: '#AAA1C8'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
@@ -180,25 +180,14 @@ const StoryBook = () => {
               </button>
             </div>
           </div>
-
-          <div className="text-center p-4 rounded-lg bg-white">
-            <p style={{color: '#C9184A'}} className="text-sm">
-              Preparamos uma lista de hotéis parceiros em Campos do Jordão 
-              com condições especiais para nossos convidados.
-            </p>
-            <button style={{color: '#FF4D6D'}} 
-                    className="mt-2 font-medium hover:underline transition-all">
-              Ver opções de hospedagem
-            </button>
-          </div>
         </div>
 
         <div className="space-y-4">
-          <p style={{color: '#800F2F'}} className="text-lg">
-            Por favor, confirme sua presença até 27 de Novembro de 2025
+          <p style={{color: '#192A51'}} className="text-lg">
+            Por favor, confirme sua presença até 27 de Setembro de 2025
           </p>
           <button 
-            style={{backgroundColor: '#C9184A'}}
+            style={{backgroundColor: '#967AA1'}}
             className="text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
           >
             Confirmar Presença
@@ -207,29 +196,29 @@ const StoryBook = () => {
 
         <div className="space-y-4">
           <div className="text-center max-w-xl mx-auto">
-            <p style={{color: '#800F2F'}} className="text-lg leading-relaxed">
+            <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
               O verdadeiro presente é poder compartilhar este momento único com você.
               Sua presença é o que tornará nosso dia ainda mais especial e memorável.
             </p>
-            <p style={{color: '#800F2F'}} className="text-lg leading-relaxed mt-4">
+            <p style={{color: '#192A51'}} className="text-lg leading-relaxed mt-4">
               Aos queridos que manifestaram interesse em nos presentear além de sua presença, 
               compartilhamos que estamos iniciando a construção do nosso lar juntos.
             </p>
             
-            <div style={{backgroundColor: '#FFB3C1'}} 
+            <div style={{backgroundColor: '#F5E6E8'}} 
                  className="rounded-lg p-4 mt-6 transition-all hover:shadow-md">
-              <p style={{color: '#800F2F'}} className="font-light mb-3">Nossa chave PIX:</p>
-              <div className="flex items-center justify-center gap-2">
+              <p style={{color: '#192A51'}} className="font-light mb-3">Nossa chave PIX:</p>
+              <div className="flex items-center justify-center gap-2 w-full max-w-sm mx-auto">
                 <input 
                   type="text" 
                   value={pixKey}
                   readOnly
-                  className="px-4 py-2 border rounded-l-lg bg-white text-gray-700 w-48"
+                  className="w-full px-4 py-2 border rounded-l-lg bg-white text-gray-700"
                 />
                 <button
                   onClick={copyPixKey}
-                  style={{backgroundColor: '#FF4D6D'}}
-                  className="px-4 py-2 rounded-r-lg border-y border-r transition-colors text-white hover:bg-opacity-90"
+                  style={{backgroundColor: '#967AA1'}}
+                  className="px-4 py-2 rounded-r-lg border-y border-r transition-colors text-white hover:bg-opacity-90 flex-shrink-0"
                 >
                   <Copy className="w-5 h-5" />
                 </button>
@@ -245,7 +234,7 @@ const StoryBook = () => {
   );
 
   return (
-    <div style={{backgroundColor: '#FFB3C1'}} 
+    <div style={{backgroundColor: '#F5E6E8'}} 
          className="min-h-screen w-full overflow-x-hidden">
       <audio
         ref={audioRef}
@@ -260,10 +249,10 @@ const StoryBook = () => {
         <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 relative">
           {currentPage === 0 && (
             <div className="text-center mb-8">
-              <h1 style={{color: '#800F2F'}} className="text-3xl sm:text-4xl font-serif mb-4">
+              <h1 style={{color: '#192A51'}} className="text-3xl sm:text-4xl font-serif mb-4">
                 Nossa História de Amor
               </h1>
-              <p style={{color: '#C9184A'}} className="italic">
+              <p style={{color: '#967AA1'}} className="italic">
                 Um conto de amor verdadeiro
               </p>
             </div>
@@ -273,7 +262,7 @@ const StoryBook = () => {
             renderInvitationPage()
           ) : (
             <div className="mb-8 space-y-6">
-              <h2 style={{color: '#800F2F'}} className="text-2xl sm:text-3xl font-serif text-center">
+              <h2 style={{color: '#192A51'}} className="text-2xl sm:text-3xl font-serif text-center">
                 {pages[currentPage].title}
               </h2>
               
@@ -287,7 +276,7 @@ const StoryBook = () => {
                 </div>
                 
                 <div className="w-full md:w-1/2">
-                  <p style={{color: '#800F2F'}} className="text-lg leading-relaxed">
+                  <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
                     {pages[currentPage].text}
                   </p>
                 </div>
@@ -300,7 +289,7 @@ const StoryBook = () => {
             {currentPage > 0 && (
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
-                style={{backgroundColor: '#FF4D6D'}}
+                style={{backgroundColor: '#AAA1C8'}}
                 className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -310,11 +299,11 @@ const StoryBook = () => {
             {currentPage < pages.length - 1 && (
               <button
                 onClick={() => setCurrentPage(currentPage + 1)}
-                style={{backgroundColor: '#FF4D6D'}}
+                style={{backgroundColor: '#AAA1C8'}}
                 className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
                   currentPage === 0 ? 'ml-auto' : ''
                 }`}
-              >[Continuação do código anterior...]
+              >
                 <ChevronRight className="w-5 h-5" />
               </button>
             )}
