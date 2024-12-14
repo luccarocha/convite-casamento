@@ -1,32 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Heart, Calendar, Copy, Volume2, VolumeX, Map } from 'lucide-react';
 
-// Componente VideoPlayer atualizado
-const VideoPlayer = ({ url }) => {
-  const videoRef = useRef(null);
-
+// Componente ImagePlayer
+const ImagePlayer = ({ url }) => {
   return (
     <div className="w-full">
-      <video
-        ref={videoRef}
+      <img
+        src={url}
+        alt="Imagem da história"
         className="w-full rounded-lg shadow-md"
-        controls
-        muted
-        autoPlay={false}
-        playsInline
-        preload="metadata"
-      >
-        <source src={url} type="video/mp4" />
-        Seu navegador não suporta o elemento de vídeo.
-      </video>
+      />
     </div>
   );
 };
 
-// Carousel atualizado
+// Carousel
 const Carousel = ({ items }) => {
   const [current, setCurrent] = useState(0);
-  const videoRefs = useRef(items.map(() => React.createRef()));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,39 +35,7 @@ const Carousel = ({ items }) => {
             index === current ? 'block' : 'hidden'
           }`}
         >
-          <video
-            ref={videoRefs.current[index]}
-            className="w-full rounded-lg shadow-md"
-            controls
-            muted
-            playsInline
-            preload="metadata"
-          >
-            <source src={item.url} type="video/mp4" />
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// MediaGrid atualizado
-const MediaGrid = ({ items }) => {
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-      {items.map((item, index) => (
-        <div key={index} className="aspect-video">
-          <video
-            className="w-full h-full object-cover rounded-lg"
-            controls
-            muted
-            playsInline
-            preload="metadata"
-          >
-            <source src={item.url} type="video/mp4" />
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+          <ImagePlayer url={item.url} />
         </div>
       ))}
     </div>
@@ -97,8 +55,8 @@ const StoryBook = () => {
       title: "O Primeiro Encontro",
       text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encontro, que marcou as nossas vidas...",
       media: {
-        type: "video",
-        url: "/arquivos/1.mp4"
+        type: "image",
+        url: "/arquivos/1.png"
       }
     },
     {
@@ -107,8 +65,8 @@ const StoryBook = () => {
       media: {
         type: "carousel",
         items: [
-          { type: "video", url: "/arquivos/2.mp4" },
-          { type: "video", url: "/arquivos/3.mp4" }
+          { type: "image", url: "/arquivos/2.png" },
+          { type: "image", url: "/arquivos/3.png" }
         ]
       }
     },
@@ -116,17 +74,16 @@ const StoryBook = () => {
       title: "Nossa Jornada",
       text: "Juntos, descobrindo novos horizontes e construindo memórias para toda vida...",
       media: {
-        type: "grid",
+        type: "carousel",
         items: [
-          { type: "video", url: "/arquivos/4.mp4" },
-          { type: "video", url: "/arquivos/5.mp4" },
-          { type: "video", url: "/arquivos/6.mp4" },
-          { type: "video", url: "/arquivos/7.mp4" },
-          { type: "video", url: "/arquivos/8.mp4" },
-          { type: "video", url: "/arquivos/9.mp4" },
-          { type: "video", url: "/arquivos/10.mp4" },
-          { type: "video", url: "/arquivos/11.mp4" },
-          { type: "video", url: "/arquivos/12.mp4" }
+          { type: "image", url: "/arquivos/4.png" },
+          { type: "image", url: "/arquivos/5.png" },
+          { type: "image", url: "/arquivos/6.png" },
+          { type: "image", url: "/arquivos/7.png" },
+          { type: "image", url: "/arquivos/8.png" },
+          { type: "image", url: "/arquivos/9.png" },
+          { type: "image", url: "/arquivos/10.png" },
+          { type: "image", url: "/arquivos/11.png" }
         ]
       }
     },
@@ -138,6 +95,7 @@ const StoryBook = () => {
         url: "/arquivos/13.mp4"
       }
     },
+
     {
       type: "invitation",
       title: "Convite Especial"
@@ -380,56 +338,65 @@ const StoryBook = () => {
               <h2 style={{color: '#192A51'}} className="text-2xl sm:text-3xl font-serif text-center">
                 {pages[currentPage].title}
               </h2>
-              
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-full md:w-1/2">
-                  {pages[currentPage].media.type === "carousel" && (
-                    <Carousel items={pages[currentPage].media.items} />
-                  )}
-                  {pages[currentPage].media.type === "grid" && (
-                    <MediaGrid items={pages[currentPage].media.items} />
-                  )}
-                  {pages[currentPage].media.type === "video" && (
-                    <VideoPlayer url={pages[currentPage].media.url} />
-                  )}
-                </div>
-                
-                <div className="w-full md:w-1/2">
-                  <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
-                    {pages[currentPage].text}
-                  </p>
-                </div>
-              </div>
+            <div className="w-full md:w-1/2">
+              {pages[currentPage].media.type === "carousel" && (
+                <Carousel items={pages[currentPage].media.items} />
+              )}
+              {pages[currentPage].media.type === "image" && (
+                <ImagePlayer url={pages[currentPage].media.url} />
+              )}
+              {pages[currentPage].media.type === "video" && (
+                <video
+                  className="w-full rounded-lg shadow-md"
+                  controls
+                  muted
+                  autoPlay={false}
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={pages[currentPage].media.url} type="video/mp4" />
+                  Seu navegador não suporta o elemento de vídeo.
+                </video>
+              )}
             </div>
-          )}
-
-          {/* Navegação minimalista */}
-          <div className="flex justify-between items-center">
-            {currentPage > 0 && (
-              <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                style={{backgroundColor: '#AAA1C8'}}
-                className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-            )}
             
-            {currentPage < pages.length - 1 && (
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                style={{backgroundColor: '#AAA1C8'}}
-                className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
-                  currentPage === 0 ? 'ml-auto' : ''
-                }`}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            )}
+            <div className="w-full md:w-1/2">
+              <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
+                {pages[currentPage].text}
+              </p>
+            </div>
           </div>
         </div>
+      )}
+
+      {/* Navegação minimalista */}
+      <div className="flex justify-between items-center">
+        {currentPage > 0 && (
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            style={{backgroundColor: '#AAA1C8'}}
+            className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+        )}
+        
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            style={{backgroundColor: '#AAA1C8'}}
+            className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
+              currentPage === 0 ? 'ml-auto' : ''
+            }`}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        )}
       </div>
     </div>
+  </div>
+</div>
   );
 };
 
