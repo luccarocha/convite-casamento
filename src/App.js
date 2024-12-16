@@ -207,19 +207,19 @@ const StoryBook = () => {
                className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
             <h3 style={{color: '#192A51'}} className="text-xl font-medium">Cerimônia</h3>
             <div className="space-y-2">
-              <p style={{color: '#192A51'}} className="text-lg">17:00 horas</p>
+              <p style={{color: '#192A51'}} className="text-lg">17:30 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
-                Igreja Nossa Senhora das Graças
+              Igreja Nossa Senhora da Luz
               </p>
               <p style={{color: '#192A51'}} className="text-lg">
-                Rua das Flores, 123 - Jardim Primavera
+              Av. Nossa Sra. da Luz, 194 - Centro
               </p>
               <p style={{color: '#192A51'}} className="text-lg">São Paulo - SP</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 pt-4">
               <button
                 onClick={() => {
-                  window.open('https://www.google.com/maps?q=Igreja+Nossa+Senhora+das+Graças');
+                  window.open('https://www.google.com/maps/place/Igreja+Nossa+Senhora+da+Luz/@-26.4054754,-52.3553762,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipN2srrWdGyDefwveWJzaZR_IGrMKAp5XFKgAhlC!2e10!3e12!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipN2srrWdGyDefwveWJzaZR_IGrMKAp5XFKgAhlC%3Dw114-h86-k-no!7i4032!8i3024!4m7!3m6!1s0x94e53dc34c0375fb:0x439b0cf20cda5c80!8m2!3d-26.4054117!4d-52.35541!10e5!16s%2Fg%2F11fn8ww954?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D');
                 }}
                 style={{backgroundColor: '#967AA1'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
@@ -232,7 +232,7 @@ const StoryBook = () => {
                   const event = {
                     text: "Cerimônia de Casamento",
                     dates: "20251227T170000",
-                    location: "Igreja Nossa Senhora das Graças"
+                    location: "Igreja Matriz Nossa Senhora da Luz"
                   };
                   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
                   window.open(googleCalendarUrl);
@@ -253,20 +253,17 @@ const StoryBook = () => {
             <div className="space-y-2">
               <p style={{color: '#192A51'}} className="text-lg">20:00 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
-                Espaço Villa Real
+                Clube Grêmio Mariopolitano
               </p>
               <p style={{color: '#192A51'}} className="text-lg">
-                Av. dos Sonhos, 789 - Centro
+                Alamenda Um, 1450 - Centro
               </p>
-              <p style={{color: '#192A51'}} className="text-lg">Campos do Jordão - SP</p>
-              <p style={{color: '#192A51'}} className="text-sm mt-2">
-                (180 km de São Paulo - aproximadamente 2h30 de viagem)
-              </p>
+              <p style={{color: '#192A51'}} className="text-lg">Mariopólis - PR</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 pt-4">
               <button
                 onClick={() => {
-                  window.open('https://www.google.com/maps?q=Espaço+Villa+Real+Campos+do+Jordão');
+                  window.open('https://www.google.com/maps/place/Clube+Gr%C3%AAmio+Mariopolitano/@-26.360187,-52.6215843,13z/data=!4m10!1m2!2m1!1sclube+mariopolis!3m6!1s0x94e54813b25716c5:0x7057fd14b9cf9b90!8m2!3d-26.360187!4d-52.5453666!15sChBjbHViZSBtYXJpb3BvbGlzWhIiEGNsdWJlIG1hcmlvcG9saXOSAQZzcG9ydHOaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTlhNVkF0VTJGbkVBReABAPoBBAgAEDQ!16s%2Fg%2F1hc8m061g?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D');
                 }}
                 style={{backgroundColor: '#967AA1'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
