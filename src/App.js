@@ -214,7 +214,7 @@ const StoryBook = () => {
               <p style={{color: '#192A51'}} className="text-lg">
               Av. Nossa Sra. da Luz, 194 - Centro
               </p>
-              <p style={{color: '#192A51'}} className="text-lg">São Paulo - SP</p>
+              <p style={{color: '#192A51'}} className="text-lg">Clevelândia - PR</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 pt-4">
               <button
@@ -276,7 +276,7 @@ const StoryBook = () => {
                   const event = {
                     text: "Festa de Casamento",
                     dates: "20251227T200000",
-                    location: "Espaço Villa Real - Campos do Jordão"
+                    location: "Clube Grêmio Mariopolitano"
                   };
                   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
                   window.open(googleCalendarUrl);
