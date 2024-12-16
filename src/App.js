@@ -45,7 +45,7 @@ const Carousel = ({ items }) => {
 const StoryBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Música começa desativada
   const audioRef = useRef(null);
 
   const pixKey = "123.456.789-00";
@@ -103,7 +103,7 @@ const StoryBook = () => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.5; // 50% do volume
+      audioRef.current.volume = 0.5;
       if (isPlaying) {
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
@@ -130,14 +130,20 @@ const StoryBook = () => {
     <button
       onClick={toggleMusic}
       style={{backgroundColor: '#967AA1'}}
-      className="fixed bottom-4 right-4 p-3 rounded-full shadow-lg text-white hover:bg-opacity-90 transition-all z-50 backdrop-blur-sm"
+      className="fixed top-4 right-4 px-4 py-2 rounded-full shadow-lg text-white hover:bg-opacity-90 transition-all z-50 backdrop-blur-sm flex items-center gap-2"
     >
-      {isPlaying ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+      {isPlaying ? (
+        <Volume2 className="w-5 h-5" />
+      ) : (
+        <>
+          <VolumeX className="w-5 h-5" />
+          <span className="text-sm">Ativar Música</span>
+        </>
+      )}
     </button>
   );
-
   const renderInvitationPage = () => (
-    <div className="text-center space-y-8 py-4 sm:py-8 px-4 sm:px-8">
+    <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8">
       <div className="space-y-6">
         <Heart style={{color: '#967AA1'}} className="w-12 h-12 mx-auto animate-pulse" />
         <h2 style={{color: '#192A51'}} className="text-3xl sm:text-5xl font-serif">
@@ -148,7 +154,7 @@ const StoryBook = () => {
         </p>
       </div>
 
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg space-y-8 p-4 sm:p-8">
+      <div className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg space-y-8 p-4 sm:p-8">
         <p className="text-lg sm:text-xl leading-relaxed" style={{color: '#192A51'}}>
           Com imensa felicidade e amor, gostaríamos de convidá-lo(a) para celebrar 
           conosco o início desta nova e maravilhosa etapa de nossas vidas.
@@ -306,8 +312,8 @@ const StoryBook = () => {
   );
 
   return (
-    <div style={{backgroundColor: '#F5E6E8'}} 
-         className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden flex flex-col items-center justify-center" 
+         style={{backgroundColor: '#F5E6E8'}}>
       <audio
         ref={audioRef}
         loop
@@ -317,7 +323,7 @@ const StoryBook = () => {
 
       <MusicControl />
 
-      <div className="max-w-4xl mx-auto p-4 sm:p-8">
+      <div className="w-full max-w-4xl mx-auto p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 relative">
           {currentPage === 0 && (
             <div className="text-center mb-8">
@@ -338,7 +344,7 @@ const StoryBook = () => {
                 {pages[currentPage].title}
               </h2>
               
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
                 <div className="w-full md:w-1/2">
                   {pages[currentPage].media.type === "carousel" && (
                     <Carousel items={pages[currentPage].media.items} />
