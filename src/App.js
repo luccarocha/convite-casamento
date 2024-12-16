@@ -45,12 +45,16 @@ const Carousel = ({ items }) => {
 const StoryBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false); // Música começa desativada
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
   const pixKey = "123.456.789-00";
 
   const pages = [
+    {
+      type: "cover",
+      title: "Convite de Casamento"
+    },
     {
       title: "O Primeiro Encontro",
       text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encontro, que marcou as nossas vidas...",
@@ -141,6 +145,39 @@ const StoryBook = () => {
         </>
       )}
     </button>
+  );
+
+  const renderCoverPage = () => (
+    <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8 min-h-[60vh] flex flex-col items-center justify-center">
+      <div className="space-y-8 max-w-2xl mx-auto p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg">
+        <Heart style={{color: '#967AA1'}} className="w-16 h-16 mx-auto animate-pulse" />
+        
+        <div className="space-y-4">
+          <h1 style={{color: '#192A51'}} className="text-4xl sm:text-5xl font-serif">
+            Luciano & Maria
+          </h1>
+          
+          <p style={{color: '#967AA1'}} className="text-xl font-light">
+            convidam para seu casamento
+          </p>
+
+          <div className="pt-8">
+            <p style={{color: '#192A51'}} className="text-2xl font-medium">
+              27 · Dezembro · 2025
+            </p>
+          </div>
+        </div>
+
+        <button 
+          onClick={() => setCurrentPage(currentPage + 1)}
+          style={{backgroundColor: '#967AA1'}}
+          className="mt-8 text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+        >
+          <span>Ver Convite</span>
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
   );
   const renderInvitationPage = () => (
     <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8">
@@ -325,18 +362,9 @@ const StoryBook = () => {
 
       <div className="w-full max-w-4xl mx-auto p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 relative">
-          {currentPage === 0 && (
-            <div className="text-center mb-8">
-              <h1 style={{color: '#192A51'}} className="text-3xl sm:text-4xl font-serif mb-4">
-                Nossa História de Amor
-              </h1>
-              <p style={{color: '#967AA1'}} className="italic">
-                Um conto de amor verdadeiro
-              </p>
-            </div>
-          )}
-
-          {pages[currentPage].type === 'invitation' ? (
+          {pages[currentPage].type === 'cover' ? (
+            renderCoverPage()
+          ) : pages[currentPage].type === 'invitation' ? (
             renderInvitationPage()
           ) : (
             <div className="mb-8 space-y-6">
@@ -376,30 +404,32 @@ const StoryBook = () => {
             </div>
           )}
 
-          {/* Navegação minimalista */}
-          <div className="flex justify-between items-center">
-            {currentPage > 0 && (
-              <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                style={{backgroundColor: '#AAA1C8'}}
-                className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-            )}
-            
-            {currentPage < pages.length - 1 && (
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                style={{backgroundColor: '#AAA1C8'}}
-                className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
-                  currentPage === 0 ? 'ml-auto' : ''
-                }`}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            )}
-          </div>
+          {/* Navegação minimalista - esconder na capa */}
+          {pages[currentPage].type !== 'cover' && (
+            <div className="flex justify-between items-center">
+              {currentPage > 0 && (
+                <button
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                  style={{backgroundColor: '#AAA1C8'}}
+                  className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+              )}
+              
+              {currentPage < pages.length - 1 && (
+                <button
+                  onClick={() => setCurrentPage(currentPage + 1)}
+                  style={{backgroundColor: '#AAA1C8'}}
+                  className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
+                    currentPage === 0 ? 'ml-auto' : ''
+                  }`}
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
