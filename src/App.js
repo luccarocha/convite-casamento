@@ -134,7 +134,7 @@ const StoryBook = () => {
     <button
       onClick={toggleMusic}
       style={{backgroundColor: '#967AA1'}}
-      className="fixed top-4 right-4 px-4 py-2 rounded-full shadow-lg text-white hover:bg-opacity-90 transition-all z-50 backdrop-blur-sm flex items-center gap-2"
+      className="fixed top-4 left-4 px-4 py-2 rounded-full shadow-lg text-white hover:bg-opacity-90 transition-all z-50 backdrop-blur-sm flex items-center gap-2"
     >
       {isPlaying ? (
         <Volume2 className="w-5 h-5" />
@@ -148,34 +148,31 @@ const StoryBook = () => {
   );
 
   const renderCoverPage = () => (
-    <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8 min-h-[60vh] flex flex-col items-center justify-center">
-      <div className="space-y-8 max-w-2xl mx-auto p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg">
+    <div className="text-center space-y-12 py-4 sm:py-8 px-2 sm:px-8 min-h-[60vh] flex flex-col items-center justify-center">
+      <div className="space-y-12 max-w-2xl mx-auto p-8 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg">
         <Heart style={{color: '#967AA1'}} className="w-16 h-16 mx-auto animate-pulse" />
         
-        <div className="space-y-4">
-          <h1 style={{color: '#192A51'}} className="text-4xl sm:text-5xl font-serif">
-            Luciano & Maria
+        <div className="space-y-6">
+          <h1 style={{color: '#192A51'}} className="text-4xl sm:text-6xl font-serif">
+            Lucca & Paloma
           </h1>
           
-          <p style={{color: '#967AA1'}} className="text-xl font-light">
-            convidam para seu casamento
+          <p style={{color: '#967AA1'}} className="text-xl font-light italic px-4">
+            "Quando dois corações se encontram, 
+            nasce uma história que merece ser eternizada..."
           </p>
-
-          <div className="pt-8">
-            <p style={{color: '#192A51'}} className="text-2xl font-medium">
-              27 · Dezembro · 2025
-            </p>
-          </div>
         </div>
 
-        <button 
-          onClick={() => setCurrentPage(currentPage + 1)}
-          style={{backgroundColor: '#967AA1'}}
-          className="mt-8 text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
-        >
-          <span>Ver Convite</span>
-          <ChevronRight className="w-5 h-5" />
-        </button>
+        <div className="flex justify-center pt-8">
+          <button 
+            onClick={() => setCurrentPage(currentPage + 1)}
+            style={{backgroundColor: '#967AA1'}}
+            className="text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+          >
+            <span>Descobrir Nossa História</span>
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );
