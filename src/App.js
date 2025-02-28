@@ -78,7 +78,7 @@ const StoryBook = () => {
     },
     {
       title: "O Primeiro Encontro",
-      text: "Era uma tarde especial de Agosto de 2020, quando marcamos um encontro, que marcou as nossas vidas...",
+      text: "Era uma tarde especial no dia 20 de Agosto de 2020, quando marcamos um encontro, que marcou as nossas vidas...",
       media: {
         type: "image",
         url: "/convite-casamento/arquivos/1.png"
@@ -114,7 +114,7 @@ const StoryBook = () => {
     },
     {
       title: "O Pedido de Casamento",
-      text: "No momento perfeito, as palavras certas fizeram o coração transbordar de alegria...",
+      text: "21 de Julho de 2024 um momento perfeito, as palavras certas fizeram o coração transbordar de alegria...",
       media: {
         type: "video",
         url: "/convite-casamento/arquivos/13.mp4"
@@ -122,7 +122,7 @@ const StoryBook = () => {
     },
     {
       title: "Casamento no Civil",
-      text: "Assim começamos nossa vida casados, escolhem legalmente se tornar uma única história, onde cada página será escrita com a tinta do amor e da parceria....",
+      text: "Em 13 de Fevereiro de 2025 começamos nossa vida casados, escolhem legalmente se tornar uma única história, onde cada página será escrita com a tinta do amor e da parceria....",
       media: {
         type: "carousel",
         items: [
