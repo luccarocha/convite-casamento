@@ -42,13 +42,34 @@ const Carousel = ({ items }) => {
   );
 };
 
+// Componente de barra de progresso
+const ProgressBar = ({ progress }) => {
+  return (
+    <div className="w-full bg-gray-200 rounded-full h-2 mt-8">
+      <div 
+        className="bg-[#967AA1] h-2 rounded-full transition-all duration-300 ease-linear"
+        style={{ width: `${progress}%` }}
+      ></div>
+    </div>
+  );
+};
+
 const StoryBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [timerActive, setTimerActive] = useState(true);
+  const [showNextButton, setShowNextButton] = useState(false);
+  const [nextButtonVisible, setNextButtonVisible] = useState(true);
   const audioRef = useRef(null);
+  const timerRef = useRef(null);
+  const blinkIntervalRef = useRef(null);
 
   const pixKey = "076.644.995-50";
+
+  // Tempos por página em segundos
+  const pageTimes = [10, 15, 25, 20, 15];
 
   const pages = [
     {
@@ -99,7 +120,6 @@ const StoryBook = () => {
         url: "/convite-casamento/arquivos/13.mp4"
       }
     },
-    
     {
       title: "Casamento no Civil",
       text: "Assim começamos nossa vida casados, escolhem legalmente se tornar uma única história, onde cada página será escrita com a tinta do amor e da parceria....",
@@ -111,12 +131,69 @@ const StoryBook = () => {
         ]
       }
     },
-
     {
       type: "invitation",
       title: "Convite Especial"
     }
   ];
+
+  // Efeito para lidar com o temporizador de progresso
+  useEffect(() => {
+    // Não mostrar a barra de progresso nas páginas especiais
+    if (pages[currentPage].type === 'cover' || pages[currentPage].type === 'invitation') {
+      return;
+    }
+
+    // Limpar temporizadores anteriores
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    
+    if (blinkIntervalRef.current) {
+      clearInterval(blinkIntervalRef.current);
+    }
+
+    // Reiniciar o estado
+    setProgress(0);
+    setShowNextButton(false);
+    setNextButtonVisible(true);
+
+    // Determinar o tempo para esta página
+    const pageIndex = currentPage - 1; // Ajustar para os índices começarem em 0
+    const adjustedIndex = Math.max(0, Math.min(pageIndex, pageTimes.length - 1));
+    const duration = pageTimes[adjustedIndex] * 1000;
+    const interval = 100;
+    const steps = duration / interval;
+    let currentStep = 0;
+
+    // Iniciar o temporizador de progresso
+    if (timerActive) {
+      timerRef.current = setInterval(() => {
+        currentStep += 1;
+        const newProgress = (currentStep / steps) * 100;
+        setProgress(Math.min(newProgress, 100));
+
+        if (newProgress >= 100) {
+          clearInterval(timerRef.current);
+          setShowNextButton(true);
+          
+          // Iniciar animação de piscar
+          blinkIntervalRef.current = setInterval(() => {
+            setNextButtonVisible(prev => !prev);
+          }, 800);
+        }
+      }, interval);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+      if (blinkIntervalRef.current) {
+        clearInterval(blinkIntervalRef.current);
+      }
+    };
+  }, [currentPage, timerActive]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -134,6 +211,18 @@ const StoryBook = () => {
       }
     }
   }, [isPlaying]);
+
+  const goToNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const toggleMusic = () => setIsPlaying(!isPlaying);
   
@@ -178,7 +267,7 @@ const StoryBook = () => {
 
         <div className="flex justify-center pt-8">
           <button 
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={goToNextPage}
             style={{backgroundColor: '#967AA1'}}
             className="text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
           >
@@ -189,6 +278,7 @@ const StoryBook = () => {
       </div>
     </div>
   );
+
   const renderInvitationPage = () => (
     <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8">
       <div className="space-y-6">
@@ -222,10 +312,10 @@ const StoryBook = () => {
             <div className="space-y-2">
               <p style={{color: '#192A51'}} className="text-lg">17:30 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
-              Igreja Nossa Senhora da Luz
+                Igreja Nossa Senhora da Luz
               </p>
               <p style={{color: '#192A51'}} className="text-lg">
-              Av. Nossa Sra. da Luz, 194 - Centro
+                Av. Nossa Sra. da Luz, 194 - Centro
               </p>
               <p style={{color: '#192A51'}} className="text-lg">Clevelândia - PR</p>
             </div>
@@ -324,7 +414,7 @@ const StoryBook = () => {
             </p>
             <p style={{color: '#192A51'}} className="text-lg leading-relaxed mt-4">
               Aos queridos que manifestaram interesse em nos presentear além de sua presença, 
-              compartilhamos que estamos iniciando a construção do nosso lar juntos.
+              compartilhamos que já iniciamos a construção do nosso lar juntos, já tendo nossa casa mobilhada, dessa forma deixamos:
             </p>
             
             <div style={{backgroundColor: '#F5E6E8'}} 
@@ -395,6 +485,8 @@ const StoryBook = () => {
                       autoPlay={false}
                       playsInline
                       preload="metadata"
+                      onPlay={() => setTimerActive(false)}
+                      onPause={() => setTimerActive(true)}
                     >
                       <source src={pages[currentPage].media.url} type="video/mp4" />
                       Seu navegador não suporta o elemento de vídeo.
@@ -408,15 +500,18 @@ const StoryBook = () => {
                   </p>
                 </div>
               </div>
+              
+              {/* Barra de progresso */}
+              <ProgressBar progress={progress} />
             </div>
           )}
 
-          {/* Navegação minimalista - esconder na capa */}
+          {/* Navegação */}
           {pages[currentPage].type !== 'cover' && (
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-6">
               {currentPage > 0 && (
                 <button
-                  onClick={() => setCurrentPage(currentPage - 1)}
+                  onClick={goToPrevPage}
                   style={{backgroundColor: '#AAA1C8'}}
                   className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md"
                 >
@@ -424,11 +519,14 @@ const StoryBook = () => {
                 </button>
               )}
               
-              {currentPage < pages.length - 1 && (
+              {showNextButton && currentPage < pages.length - 1 && (
                 <button
-                  onClick={() => setCurrentPage(currentPage + 1)}
-                  style={{backgroundColor: '#AAA1C8'}}
-                  className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md ${
+                  onClick={goToNextPage}
+                  style={{
+                    backgroundColor: '#AAA1C8',
+                    opacity: nextButtonVisible ? 1 : 0.5
+                  }}
+                  className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md animate-pulse ${
                     currentPage === 0 ? 'ml-auto' : ''
                   }`}
                 >
