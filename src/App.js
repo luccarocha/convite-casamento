@@ -65,7 +65,7 @@ const StoryBook = () => {
     },
     {
       title: "O Pedido de Namoro",
-      text: "Sob as estrelas, com o coração acelerado, ele preparou uma surpresa inesquecível...",
+      text: "Numa tarde linda, com o coração acelerado, ele preparou uma surpresa inesquecível...",
       media: {
         type: "carousel",
         items: [
@@ -99,6 +99,19 @@ const StoryBook = () => {
         url: "/convite-casamento/arquivos/13.mp4"
       }
     },
+    
+    {
+      title: "Casamento no Civil",
+      text: "Assim começamos nossa vida casados, escolhem legalmente se tornar uma única história, onde cada página será escrita com a tinta do amor e da parceria....",
+      media: {
+        type: "carousel",
+        items: [
+          { type: "image", url: "/convite-casamento/arquivos/14.png" },
+          { type: "image", url: "/convite-casamento/arquivos/15.png" }
+        ]
+      }
+    },
+
     {
       type: "invitation",
       title: "Convite Especial"
