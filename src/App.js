@@ -69,7 +69,7 @@ const StoryBook = () => {
   const pixKey = "076.644.995-50";
 
   // Tempos por página em segundos
-  const pageTimes = [7, 10, 20, 2, 10];
+  const pageTimes = [7, 10, 22, 2, 10];
 
   const pages = [
     {
@@ -86,7 +86,7 @@ const StoryBook = () => {
     },
     {
       title: "O Pedido de Namoro",
-      text: "No dia 18 de Dezembro de 2020, com o coração acelerado, ele preparou uma surpresa inesquecível...",
+      text: "No dia 18 de Dezembro de 2020, com o coração acelerado, ele preparou uma surpresa inesquecível e ela disse: SIM... ",
       media: {
         type: "carousel",
         items: [
