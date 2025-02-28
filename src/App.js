@@ -122,7 +122,7 @@ const StoryBook = () => {
     },
     {
       title: "Casamento no Civil",
-      text: "Em 13 de Fevereiro de 2025 começamos nossa vida casados, escolhem legalmente se tornar uma única história, onde cada página será escrita com a tinta do amor e da parceria....",
+      text: "Em 13 de Fevereiro de 2025 começamos nossa vida casados, escolhemos legalmente nos tornar uma única história, onde cada página será escrita com a tinta do amor e da cumplicidade....",
       media: {
         type: "carousel",
         items: [
