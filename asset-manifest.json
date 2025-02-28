@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/convite-casamento/static/css/main.e634ca52.css",
-    "main.js": "/convite-casamento/static/js/main.bbcd752b.js",
+    "main.js": "/convite-casamento/static/js/main.aaf1b76a.js",
     "static/js/488.0043e42e.chunk.js": "/convite-casamento/static/js/488.0043e42e.chunk.js",
     "index.html": "/convite-casamento/index.html",
     "main.e634ca52.css.map": "/convite-casamento/static/css/main.e634ca52.css.map",
-    "main.bbcd752b.js.map": "/convite-casamento/static/js/main.bbcd752b.js.map",
+    "main.aaf1b76a.js.map": "/convite-casamento/static/js/main.aaf1b76a.js.map",
     "488.0043e42e.chunk.js.map": "/convite-casamento/static/js/488.0043e42e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e634ca52.css",
-    "static/js/main.bbcd752b.js"
+    "static/js/main.aaf1b76a.js"
   ]
 }
