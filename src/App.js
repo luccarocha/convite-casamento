@@ -132,6 +132,11 @@ const StoryBook = () => {
       }
     },
     {
+      type: "special-invitation",
+      title: "Nosso Convite Especial",
+      text: "Com grande felicidade e amor, convidamos você a celebrar este momento especial em nossas vidas. Assim como cada estrela brilha no céu, sua presença iluminará ainda mais o dia em que uniremos nossas almas para sempre."
+    },
+    {
       type: "invitation",
       title: "Convite Especial"
     }
@@ -140,7 +145,9 @@ const StoryBook = () => {
   // Efeito para lidar com o temporizador de progresso
   useEffect(() => {
     // Não mostrar a barra de progresso nas páginas especiais
-    if (pages[currentPage].type === 'cover' || pages[currentPage].type === 'invitation') {
+    if (pages[currentPage].type === 'cover' || 
+        pages[currentPage].type === 'invitation' || 
+        pages[currentPage].type === 'special-invitation') {
       return;
     }
 
@@ -273,6 +280,51 @@ const StoryBook = () => {
           >
             <span>Descobrir Nossa História</span>
             <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderSpecialInvitation = () => (
+    <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8 min-h-[60vh] flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Efeito de fogos de artifício */}
+      <div className="absolute inset-0 z-0">
+        <div className="firework absolute" style={{left: '25%', top: '25%'}}></div>
+        <div className="firework absolute delay-1000" style={{left: '75%', top: '33%'}}></div>
+        <div className="firework absolute delay-2000" style={{left: '50%', top: '20%'}}></div>
+        <div className="firework absolute delay-1500" style={{left: '33%', top: '66%'}}></div>
+        <div className="firework absolute delay-500" style={{left: '80%', top: '15%'}}></div>
+        <div className="firework absolute delay-2500" style={{left: '15%', top: '60%'}}></div>
+      </div>
+      
+      <div className="space-y-12 max-w-2xl mx-auto p-8 rounded-lg bg-white/90 backdrop-blur-sm shadow-lg z-10">
+        {/* Corações pulsantes */}
+        <div className="flex justify-center gap-6">
+          <Heart style={{color: '#967AA1'}} className="w-8 h-8 animate-pulse" />
+          <Heart style={{color: '#967AA1'}} className="w-12 h-12 animate-pulse delay-300" />
+          <Heart style={{color: '#967AA1'}} className="w-8 h-8 animate-pulse delay-700" />
+        </div>
+        
+        <h2 style={{color: '#192A51'}} className="text-3xl sm:text-5xl font-serif">
+          Nosso Convite Especial
+        </h2>
+        
+        <p style={{color: '#192A51'}} className="text-xl font-light italic px-4 leading-relaxed">
+          Com grande felicidade e amor, convidamos você a celebrar este momento especial em nossas vidas. 
+        </p>
+        
+        <p style={{color: '#192A51'}} className="text-xl font-light italic px-4 leading-relaxed">
+          Assim como cada estrela brilha no céu, sua presença iluminará ainda mais o dia em que uniremos nossas almas para sempre.
+        </p>
+
+        <div className="flex justify-center pt-4">
+          <button 
+            onClick={goToNextPage}
+            style={{backgroundColor: '#967AA1'}}
+            className="text-white px-10 py-4 text-xl rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
+          >
+            Convite
           </button>
         </div>
       </div>
@@ -457,12 +509,61 @@ const StoryBook = () => {
 
       <MusicControl />
 
+      {/* Estilos CSS para Fireworks */}
+      <style jsx>{`
+        @keyframes firework {
+          0% { transform: translate(0, 0); width: 0.5vmin; opacity: 1; }
+          50% { width: 0.5vmin; opacity: 1; }
+          100% { width: 5vmin; opacity: 0; }
+        }
+
+        .firework {
+          width: 0.5vmin;
+          height: 0.5vmin;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          animation: firework 2s infinite;
+        }
+
+        .firework::before, .firework::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          opacity: 0.5;
+        }
+
+        .firework::before {
+          background: radial-gradient(circle, rgb(255, 189, 189) 0%, rgba(255, 189, 189, 0) 100%);
+          animation: firework 2s infinite;
+        }
+
+        .firework::after {
+          background: radial-gradient(circle, rgb(186, 149, 205) 0%, rgba(186, 149, 205, 0) 100%);
+          animation: firework 2.1s 0.1s infinite;
+        }
+
+        .delay-0 { animation-delay: 0ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-1000 { animation-delay: 1000ms; }
+        .delay-1500 { animation-delay: 1500ms; }
+        .delay-2000 { animation-delay: 2000ms; }
+        .delay-2500 { animation-delay: 2500ms; }
+      `}</style>
+
       <div className="w-full max-w-4xl mx-auto p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-2xl p-4 sm:p-8 relative">
           {pages[currentPage].type === 'cover' ? (
             renderCoverPage()
           ) : pages[currentPage].type === 'invitation' ? (
             renderInvitationPage()
+          ) : pages[currentPage].type === 'special-invitation' ? (
+            renderSpecialInvitation()
           ) : (
             <div className="mb-8 space-y-6">
               <h2 style={{color: '#192A51'}} className="text-2xl sm:text-3xl font-serif text-center">
@@ -526,10 +627,9 @@ const StoryBook = () => {
                     backgroundColor: '#AAA1C8',
                     opacity: nextButtonVisible ? 1 : 0.5
                   }}
-                  className={`p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md animate-pulse ${
-                    currentPage === 0 ? 'ml-auto' : ''
-                  }`}
+                  className="p-3 rounded-full text-white hover:bg-opacity-90 transition-all shadow-md animate-pulse flex items-center gap-2"
                 >
+                  <span>Seguinte</span>
                   <ChevronRight className="w-5 h-5" />
                 </button>
               )}
