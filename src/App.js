@@ -134,7 +134,7 @@ const StoryBook = () => {
     {
       type: "special-invitation",
       title: "Nosso Convite Especial",
-      text: "Com grande felicidade e amor, convidamos você a celebrar este momento especial em nossas vidas. Assim como cada estrela brilha no céu, sua presença iluminará ainda mais o dia em que uniremos nossas almas para sempre."
+      text: "Com grande felicidade e amor, convidamos vocês a celebrar este momento especial em nossas vidas. Assim como cada estrela brilha no céu, sua presença iluminará ainda mais o dia em que uniremos nossas almas para sempre."
     },
     {
       type: "invitation",
@@ -288,22 +288,26 @@ const StoryBook = () => {
 
   const renderSpecialInvitation = () => (
     <div className="text-center space-y-8 py-4 sm:py-8 px-2 sm:px-8 min-h-[60vh] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Efeito de fogos de artifício */}
-      <div className="absolute inset-0 z-0">
-        <div className="firework absolute" style={{left: '25%', top: '25%'}}></div>
-        <div className="firework absolute delay-1000" style={{left: '75%', top: '33%'}}></div>
-        <div className="firework absolute delay-2000" style={{left: '50%', top: '20%'}}></div>
-        <div className="firework absolute delay-1500" style={{left: '33%', top: '66%'}}></div>
-        <div className="firework absolute delay-500" style={{left: '80%', top: '15%'}}></div>
-        <div className="firework absolute delay-2500" style={{left: '15%', top: '60%'}}></div>
+      {/* Efeito de fogos de artifício - Versão melhorada */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="firework-container">
+          <div className="firework" style={{left: '25%', top: '25%'}}></div>
+          <div className="firework" style={{left: '75%', top: '33%', animationDelay: '1s'}}></div>
+          <div className="firework" style={{left: '50%', top: '20%', animationDelay: '2s'}}></div>
+          <div className="firework" style={{left: '33%', top: '66%', animationDelay: '1.5s'}}></div>
+          <div className="firework" style={{left: '80%', top: '15%', animationDelay: '0.5s'}}></div>
+          <div className="firework" style={{left: '15%', top: '60%', animationDelay: '2.5s'}}></div>
+          <div className="firework" style={{left: '65%', top: '75%', animationDelay: '0.8s'}}></div>
+          <div className="firework" style={{left: '40%', top: '40%', animationDelay: '3s'}}></div>
+        </div>
       </div>
       
       <div className="space-y-12 max-w-2xl mx-auto p-8 rounded-lg bg-white/90 backdrop-blur-sm shadow-lg z-10">
         {/* Corações pulsantes */}
         <div className="flex justify-center gap-6">
           <Heart style={{color: '#967AA1'}} className="w-8 h-8 animate-pulse" />
-          <Heart style={{color: '#967AA1'}} className="w-12 h-12 animate-pulse delay-300" />
-          <Heart style={{color: '#967AA1'}} className="w-8 h-8 animate-pulse delay-700" />
+          <Heart style={{color: '#967AA1'}} className="w-12 h-12 animate-pulse" style={{animationDelay: '0.3s'}} />
+          <Heart style={{color: '#967AA1'}} className="w-8 h-8 animate-pulse" style={{animationDelay: '0.7s'}} />
         </div>
         
         <h2 style={{color: '#192A51'}} className="text-3xl sm:text-5xl font-serif">
@@ -322,7 +326,7 @@ const StoryBook = () => {
           <button 
             onClick={goToNextPage}
             style={{backgroundColor: '#967AA1'}}
-            className="text-white px-10 py-4 text-xl rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
+            className={`text-white px-10 py-4 text-xl rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg ${nextButtonVisible ? 'animate-pulse' : 'opacity-50'}`}
           >
             Convite
           </button>
@@ -336,16 +340,16 @@ const StoryBook = () => {
       <div className="space-y-6">
         <Heart style={{color: '#967AA1'}} className="w-12 h-12 mx-auto animate-pulse" />
         <h2 style={{color: '#192A51'}} className="text-3xl sm:text-5xl font-serif">
-          Convite Especial
+          Lucca e Paloma
         </h2>
         <p style={{color: '#967AA1'}} className="text-lg sm:text-xl font-light italic">
-          Com muita alegria convidamos você para celebrar nosso amor...
+          Com muita alegria convidamos vocês para celebrar nosso amor...
         </p>
       </div>
 
       <div className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg space-y-8 p-4 sm:p-8">
         <p className="text-lg sm:text-xl leading-relaxed" style={{color: '#192A51'}}>
-          Com imensa felicidade e amor, gostaríamos de convidá-lo(a) para celebrar 
+          Com imensa felicidade e amor, gostaríamos de convidá-los para celebrar 
           conosco o início desta nova e maravilhosa etapa de nossas vidas.
         </p>
 
@@ -461,7 +465,7 @@ const StoryBook = () => {
         <div className="space-y-4">
           <div className="text-center max-w-xl mx-auto">
             <p style={{color: '#192A51'}} className="text-lg leading-relaxed">
-              O verdadeiro presente é poder compartilhar este momento único com você.
+              O verdadeiro presente é poder compartilhar este momento único com vocês.
               Sua presença é o que tornará nosso dia ainda mais especial e memorável.
             </p>
             <p style={{color: '#192A51'}} className="text-lg leading-relaxed mt-4">
@@ -509,12 +513,21 @@ const StoryBook = () => {
 
       <MusicControl />
 
-      {/* Estilos CSS para Fireworks */}
+      {/* Estilos CSS para Fireworks - Versão melhorada */}
       <style jsx>{`
         @keyframes firework {
           0% { transform: translate(0, 0); width: 0.5vmin; opacity: 1; }
           50% { width: 0.5vmin; opacity: 1; }
-          100% { width: 5vmin; opacity: 0; }
+          100% { width: 10vmin; opacity: 0; }
+        }
+
+        .firework-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
         }
 
         .firework {
@@ -533,7 +546,7 @@ const StoryBook = () => {
           width: 100%;
           height: 100%;
           border-radius: 50%;
-          opacity: 0.5;
+          opacity: 0.7;
         }
 
         .firework::before {
@@ -546,14 +559,14 @@ const StoryBook = () => {
           animation: firework 2.1s 0.1s infinite;
         }
 
-        .delay-0 { animation-delay: 0ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .delay-700 { animation-delay: 700ms; }
-        .delay-1000 { animation-delay: 1000ms; }
-        .delay-1500 { animation-delay: 1500ms; }
-        .delay-2000 { animation-delay: 2000ms; }
-        .delay-2500 { animation-delay: 2500ms; }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+
+        .animate-pulse {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
       `}</style>
 
       <div className="w-full max-w-4xl mx-auto p-4 sm:p-8">
@@ -607,8 +620,9 @@ const StoryBook = () => {
             </div>
           )}
 
-          {/* Navegação */}
-          {pages[currentPage].type !== 'cover' && (
+          {/* Navegação - Remover para o card de convite especial */}
+          {pages[currentPage].type !== 'cover' && 
+           pages[currentPage].type !== 'special-invitation' && (
             <div className="flex justify-between items-center mt-6">
               {currentPage > 0 && (
                 <button
