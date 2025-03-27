@@ -69,7 +69,7 @@ const StoryBook = () => {
   const pixKey = "076.644.995-50";
 
   // Tempos por página em segundos
-  const pageTimes = [7, 10, 22, 2, 10];
+  const pageTimes = [5, 8, 20, 2, 8];
 
   const pages = [
     {
