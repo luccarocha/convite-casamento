@@ -366,7 +366,7 @@ const StoryBook = () => {
                className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
             <h3 style={{color: '#192A51'}} className="text-xl font-medium">Cerimônia</h3>
             <div className="space-y-2">
-              <p style={{color: '#192A51'}} className="text-lg">17:30 horas</p>
+              <p style={{color: '#192A51'}} className="text-lg">17:00 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
                 Igreja Nossa Senhora da Luz
               </p>
@@ -412,17 +412,17 @@ const StoryBook = () => {
             <div className="space-y-2">
               <p style={{color: '#192A51'}} className="text-lg">20:00 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
-                Clube Grêmio Mariopolitano
+                Restaurante Ferreiras
               </p>
               <p style={{color: '#192A51'}} className="text-lg">
-                Alamenda Um, 1450 - Centro
+                R. Cel. Manoel Ferreira Bello, 639 - Centro
               </p>
-              <p style={{color: '#192A51'}} className="text-lg">Mariopólis - PR</p>
+              <p style={{color: '#192A51'}} className="text-lg">Clevelândia - PR</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 pt-4">
               <button
                 onClick={() => {
-                  window.open('https://www.google.com/maps/place/Clube+Gr%C3%AAmio+Mariopolitano/@-26.360187,-52.6215843,13z/data=!4m10!1m2!2m1!1sclube+mariopolis!3m6!1s0x94e54813b25716c5:0x7057fd14b9cf9b90!8m2!3d-26.360187!4d-52.5453666!15sChBjbHViZSBtYXJpb3BvbGlzWhIiEGNsdWJlIG1hcmlvcG9saXOSAQZzcG9ydHOaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTlhNVkF0VTJGbkVBReABAPoBBAgAEDQ!16s%2Fg%2F1hc8m061g?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D');
+                  window.open('https://bit.ly/festadecasamentolp');
                 }}
                 style={{backgroundColor: '#967AA1'}}
                 className="flex-1 text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
@@ -435,7 +435,7 @@ const StoryBook = () => {
                   const event = {
                     text: "Festa de Casamento",
                     dates: "20251227T200000",
-                    location: "Clube Grêmio Mariopolitano"
+                    location: "Restaurante Ferreiras"
                   };
                   const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.text)}&dates=${event.dates}/${event.dates}&location=${encodeURIComponent(event.location)}`;
                   window.open(googleCalendarUrl);
