@@ -410,7 +410,7 @@ const StoryBook = () => {
                className="p-4 rounded-lg space-y-4 transition-all hover:shadow-md">
             <h3 style={{color: '#192A51'}} className="text-xl font-medium">Festa</h3>
             <div className="space-y-2">
-              <p style={{color: '#192A51'}} className="text-lg">20:00 horas</p>
+              <p style={{color: '#192A51'}} className="text-lg">18:30 horas</p>
               <p style={{color: '#192A51'}} className="text-lg font-medium">
                 Restaurante Ferreiras
               </p>
@@ -452,14 +452,9 @@ const StoryBook = () => {
 
         <div className="space-y-4">
           <p style={{color: '#192A51'}} className="text-lg">
-            Por favor, confirme sua presença até 27 de Setembro de 2025
+            Por favor, confirme sua presença até 01 de Setembro de 2025 via WhatsApp! 
           </p>
-          <button 
-            style={{backgroundColor: '#967AA1'}}
-            className="text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
-          >
-            Confirmar Presença
-          </button>
+          
         </div>
 
         <div className="space-y-4">
@@ -469,7 +464,7 @@ const StoryBook = () => {
               Sua presença é o que tornará nosso dia ainda mais especial e memorável.
             </p>
             <p style={{color: '#192A51'}} className="text-lg leading-relaxed mt-4">
-              Aos queridos que manifestaram interesse em nos presentear além de sua presença, 
+              Aos queridos que manifestarem interesse em nos presentear além de sua presença, 
               compartilhamos que já iniciamos a construção do nosso lar juntos, já tendo nossa casa mobilhada, dessa forma deixamos:
             </p>
             
