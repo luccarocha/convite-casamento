@@ -452,7 +452,7 @@ const StoryBook = () => {
 
         <div className="space-y-4">
           <p style={{color: '#192A51'}} className="text-lg">
-            Por favor, confirme sua presença até 01 de Setembro de 2025 via WhatsApp! 
+            Por favor, confirme sua presença até 30 de Outubro de 2025 via WhatsApp! 
           </p>
           
         </div>
